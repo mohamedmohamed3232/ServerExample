@@ -39,7 +39,7 @@ public class ServerResource {
                         .build()
         );
     }
-    @GetMapping("/ping/ipAddress")
+    @GetMapping("/ping/{ipAddress}")
     public ResponseEntity<Response> pingServer(@PathVariable("ipAddress") String ipAddress) throws IOException {
         Server server = serverService.ping(ipAddress);
         return ResponseEntity.ok(
@@ -91,6 +91,6 @@ public class ServerResource {
     }
     @GetMapping (path = "/image/{fileName}", produces = IMAGE_PNG_VALUE)
     public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException {
-        return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "Downloads/images/" + fileName));
+        return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/Downloads/images/" + fileName));
     }
 }
